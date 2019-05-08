@@ -1,4 +1,3 @@
-import taskReq from '../common/task'
 import '../../sass/task_input.scss'
 
 const TaskInput = {
@@ -9,12 +8,8 @@ const TaskInput = {
 		};
 	},
 	methods: {
-		add: function(e){
-			taskReq.createTask(this.title, ()=>{
-				//should refresh the list here
-				this.refresh();
-		
-			});
+		add: function(){
+			this.$store.commit("add", this.title);
 			this.title="";
 		}
 	},

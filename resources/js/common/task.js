@@ -29,8 +29,7 @@ const taskReq = {
 			});
 	},
 	updateTask(task, onsuccess){
-		let data = {status: !task.status};
-		axios.patch('/api/user/' + USERID +'/task/' + task.id, data)
+		axios.patch('/api/user/' + USERID +'/task/' + task.id, task)
 			.then(function (response) {
 				console.log(response);
 				onsuccess();

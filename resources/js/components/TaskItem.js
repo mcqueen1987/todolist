@@ -1,4 +1,3 @@
-import taskReq from '../common/task'
 import '../../sass/task_item.scss'
 
 const TaskItem = {
@@ -7,18 +6,15 @@ const TaskItem = {
 			onhover: false
 		};
 	},
-	props: ['task', 'refresh'],
+	props: ['task'],
 	methods: {
-		update(){
-			taskReq.updateTask(this.task,  ()=>{
-				this.refresh();
-			});
-		},
-		deleteTask(){		
-			taskReq.deleteTask(this.task.id, ()=>{
-				this.refresh();
-			});
-		},	
+	    deleteTask(){
+            this.$store.commit('delete', this.task);
+        },
+        updateTask(){
+	        this.task.status = !this.task.status;
+            this.$store.commit('update', this.task);
+        },
 		onhoverY(){
 			this.onhover = true;
 		},
@@ -29,7 +25,7 @@ const TaskItem = {
 	template:`
 	<div class='taskitem'  @mouseover="onhoverY" @mouseleave="onhoverN" >
 	<div class='delete' v-show="onhover" @click="deleteTask"> ❌ </div>
-	<div class="check-box" @click="update">
+	<div class="check-box" @click="updateTask">
 	<div class="check-box-mark" v-if="task.status == 1" style="display:inline-block">✔️</div>
 	</div>
 	<div style="display:inline-block" :style="{'text-decoration': task.status == 1 ? 'line-through': 'unset'}"> {{task.title}} </div>
