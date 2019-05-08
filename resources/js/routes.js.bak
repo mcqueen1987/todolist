@@ -1,0 +1,6 @@
+import buttoncounter from "./page/App.js";
+
+export default[
+  { path: '', redirect: '/index' },
+  { path: '/index', component: buttoncounter},
+];
