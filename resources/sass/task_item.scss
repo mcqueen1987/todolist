@@ -1,8 +1,8 @@
 .taskitem {
   padding-left: 12px;
   border-bottom: 1px solid #ededed;
+  display: flex;
   .check-box {
-    display: inline-block;
     position: relative;
     top: 10px;
     width: 40px;
@@ -10,26 +10,26 @@
     border: 1px solid rgb(223, 223, 223);
     border-radius: 50%;
     margin-right: 20px;
+    .check-box-mark {
+      bottom: 9px;
+      display: inline-block;
+      position: relative;
+      left: 6px;
+    }
   }
-  .check-box-mark {
-    bottom: 9px;
-    display: inline-block;
-    position: relative;
-    left: 6px;
+  .item-title {
+    flex-grow: 2;
+    .comments {
+      font-size: 12px;
+      line-height: 10px;
+      margin: -10px 0 10px 0;
+    }
   }
   .delete {
-    float: right;
-    padding: 0px 20px 0px 0px;
+    width: 40px;
     font-size: 39px;
     font-weight: 200;
     color: red;
-  }
-  .task-comments {
-    font-size: 12px;
-    position: relative;
-    max-height: 1px;
-    top: 15px;
-    left: -50px;
   }
 }
 
