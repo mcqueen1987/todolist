@@ -7,11 +7,22 @@ Vue.use(Vuex)
 export default new Vuex.Store({
 	state: {
 		tasks : [],
-		userId : USERID
+		userId : USERID,
+        userName : USERNAME,
+        pageType : 'ALL'
 	},
     getters:{
 	    tasks: state => {
 	        return state.tasks;
+        },
+        userId: state => {
+	        return state.userId;
+        },
+        userName: state => {
+	        return state.userName;
+        },
+        pageType: state => {
+	        return state.pageType;
         }
     },
     mutations : {
@@ -38,6 +49,9 @@ export default new Vuex.Store({
             taskReq.createTask(title, () => {
                 this.commit('refresh');
             })
+        },
+        updateType: function (state, type) {
+            state.pageType = type;
         }
 	}
 })

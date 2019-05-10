@@ -1,6 +1,43 @@
-.taskpage{
-	margin: auto;
-	width: 60%;
-	padding: 10px;
+.taskpage {
+  margin: auto;
+  width: 60%;
+  padding: 10px;
+  .completed-button {
+    margin: 10px 0 0 0;
+    color: #7b7474;
+    border: none;
+    background-color: white;
+    box-shadow: 4px 4px 5px rgb(237, 237, 237);
+  }
+  .task-container {
+    max-width: 1200px;
+    margin: auto;
+    box-shadow: 2px 2px 8px #f3f3f3;
+    background: white;
+  }
+  .task-title {
+    font-size: 92px;
+    font-weight: 100;
+    text-align: center;
+    color: rgb(232, 216, 216);
+  }
+  .taskpage-tabs {
+    margin: 4px 0 4px 11px;
+    border-spacing: 5px;
+    display: inline-block;
+    width: 100%;
+    div {
+      font-size: 19px;
+      font-weight: 300;
+      color: dimgray;
+      border-radius: 6px;
+      display: table-cell;
+      padding: 3px 5px 3px 5px;
+      border: 1px solid white;
+    }
+    .selected {
+      border: 1px solid rgba(175, 47, 47, 0.2);
+    }
+  }
 }
 

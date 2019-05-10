@@ -6211,7 +6211,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".taskinput input {\n  outline: none;\n  width: 90%;\n  height: 50px;\n  font-size: 20px;\n  padding: 16px 16px 16px 60px;\n  border: none;\n  box-shadow: inset 0 -2px 1px rgba(0, 0, 0, 0.03);\n}\n.taskinput button {\n  position: relative;\n  left: -40px;\n  border: none;\n  font-size: 26px;\n}\n.taskinput .show-add-label {\n  display: none;\n}", ""]);
+exports.push([module.i, ".taskinput {\n  box-shadow: inset 0px -2px 8px #f3f3f3;\n  display: flex;\n  background: white;\n  font-size: 32px;\n  padding: 16px 16px 16px 48px;\n}\n.taskinput input {\n  outline: none;\n  width: 100%;\n  border: none;\n  font-weight: 100;\n}\n.taskinput input::-webkit-input-placeholder {\n  color: #ccc;\n}\n.taskinput button {\n  background: none;\n  border: none;\n  font-weight: 100;\n}\n.taskinput .show-add-label {\n  display: none;\n}", ""]);
 
 // exports
 
@@ -6230,7 +6230,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".taskitem {\n  width: 90%;\n  height: 50px;\n  font-size: 24px;\n  padding: 2px 0 0 12px;\n  background-color: #ffffff;\n  border: none;\n  box-shadow: inset 0 -2px 1px rgba(0, 0, 0, 0.03);\n  border-bottom: 1px solid #ededed;\n}\n.taskitem .check-box {\n  display: inline-block;\n  width: 30px;\n  height: 30px;\n  border: 1px solid #dfdfdf;\n  background-color: white;\n  border-radius: 50%;\n}\n.taskitem .delete {\n  float: right;\n  padding: 8px 20px 0px 0px;\n}", ""]);
+exports.push([module.i, ".taskitem {\n  padding-left: 12px;\n  border-bottom: 1px solid #ededed;\n}\n.taskitem .check-box {\n  display: inline-block;\n  position: relative;\n  top: 10px;\n  width: 40px;\n  height: 40px;\n  border: 1px solid #dfdfdf;\n  border-radius: 50%;\n  margin-right: 20px;\n}\n.taskitem .check-box-mark {\n  bottom: 9px;\n  display: inline-block;\n  position: relative;\n  left: 6px;\n}\n.taskitem .delete {\n  float: right;\n  padding: 0px 20px 0px 0px;\n  font-size: 39px;\n  font-weight: 200;\n  color: red;\n}\n.taskitem .task-comments {\n  font-size: 12px;\n  position: relative;\n  max-height: 1px;\n  top: 15px;\n  left: -50px;\n}", ""]);
 
 // exports
 
@@ -6249,7 +6249,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".tasklist {\n  overflow-y: scroll;\n  overflow-x: scroll;\n  max-height: 200px;\n}\n.tasklist div.taskitem {\n  width: 90%;\n  height: 50px;\n}", ""]);
+exports.push([module.i, ".tasklist {\n  overflow-y: scroll;\n  overflow-x: scroll;\n  max-height: 300px;\n  font-weight: 200;\n  color: #666;\n  font-size: 26px;\n  line-height: 60px;\n  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2);\n}", ""]);
 
 // exports
 
@@ -6268,7 +6268,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".taskpage {\n  margin: auto;\n  width: 60%;\n  padding: 10px;\n}", ""]);
+exports.push([module.i, ".taskpage {\n  margin: auto;\n  width: 60%;\n  padding: 10px;\n}\n.taskpage .completed-button {\n  margin: 10px 0 0 0;\n  color: #7b7474;\n  border: none;\n  background-color: white;\n  box-shadow: 4px 4px 5px #ededed;\n}\n.taskpage .task-container {\n  max-width: 1200px;\n  margin: auto;\n  box-shadow: 2px 2px 8px #f3f3f3;\n  background: white;\n}\n.taskpage .task-title {\n  font-size: 92px;\n  font-weight: 100;\n  text-align: center;\n  color: #e8d8d8;\n}\n.taskpage .taskpage-tabs {\n  margin: 4px 0 4px 11px;\n  border-spacing: 5px;\n  display: inline-block;\n  width: 100%;\n}\n.taskpage .taskpage-tabs div {\n  font-size: 19px;\n  font-weight: 300;\n  color: dimgray;\n  border-radius: 6px;\n  display: table-cell;\n  padding: 3px 5px 3px 5px;\n  border: 1px solid white;\n}\n.taskpage .taskpage-tabs .selected {\n  border: 1px solid rgba(175, 47, 47, 0.2);\n}", ""]);
 
 // exports
 
@@ -53457,8 +53457,11 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+ // import BootstrapVue from "bootstrap-vue"
+// import '../sass/custom.scss'
 
-Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]);
+Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]); // Vue.use(BootstrapVue);
+
 
 
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
@@ -53634,13 +53637,14 @@ var TaskItem = {
       onhover: false
     };
   },
-  props: ['task'],
+  props: ['task', 'userInfo'],
   methods: {
     deleteTask: function deleteTask() {
       this.$store.commit('delete', this.task);
     },
     updateTask: function updateTask() {
       this.task.status = !this.task.status;
+      this.task.finished_at = new Date().toISOString().slice(0, 19).replace('T', ' ');
       this.$store.commit('update', this.task);
     },
     onhoverY: function onhoverY() {
@@ -53650,7 +53654,7 @@ var TaskItem = {
       this.onhover = false;
     }
   },
-  template: "\n\t<div class='taskitem'  @mouseover=\"onhoverY\" @mouseleave=\"onhoverN\" >\n\t<div class='delete' v-show=\"onhover\" @click=\"deleteTask\"> \u274C </div>\n\t<div class=\"check-box\" @click=\"updateTask\">\n\t<div class=\"check-box-mark\" v-if=\"task.status == 1\" style=\"display:inline-block\">\u2714\uFE0F</div>\n\t</div>\n\t<div style=\"display:inline-block\" :style=\"{'text-decoration': task.status == 1 ? 'line-through': 'unset'}\"> {{task.title}} </div>\n\t</div>"
+  template: "\n\t<div class='taskitem'  @mouseover=\"onhoverY\" @mouseleave=\"onhoverN\" >\n        <div class='delete' v-show=\"onhover\" @click=\"deleteTask\"> \xD7 </div>\n        <div class=\"check-box\" @click=\"updateTask\">\n            <div class=\"check-box-mark\" v-if=\"task.status == 1\" style=\"display:inline-block\">\u2714\uFE0F</div>\n        </div>\n        <div style=\"display:inline-block\" :style=\"{'text-decoration': task.status == 1 ? 'line-through': 'unset'}\"> {{task.title}} </div>\n\t    <div class=\"task-comments\" v-if=\"task.status == 1\" style=\"display:inline-block\">{{task.finished_at}} by {{this.$store.getters.userName}}</div>\n\t</div>"
 };
 /* harmony default export */ __webpack_exports__["default"] = (TaskItem);
 
@@ -53704,19 +53708,46 @@ var TaskPage = {
   mounted: function mounted() {
     this.$store.commit('refresh');
   },
+  data: function data() {
+    return {
+      filterStatus: -1,
+      selected: -1
+    };
+  },
   components: {
     TaskList: _components_TaskList__WEBPACK_IMPORTED_MODULE_0__["default"],
     TaskInput: _components_TaskInput__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  computed: {
-    sortAsc: function sortAsc() {
-      //  ascending tasks
-      return this.$store.getters.tasks.sort(function (a, b) {
+  methods: {
+    getTasksByStatus: function getTasksByStatus(status) {
+      if (status < 0) {
+        return this.$store.getters.tasks;
+      }
+
+      return this.$store.getters.tasks.filter(function (item) {
+        return item.status == status;
+      });
+    },
+    sortAsc: function sortAsc(tasks) {
+      // ascending tasks
+      return tasks.sort(function (a, b) {
         return b.id - a.id;
       });
+    },
+    setFilter: function setFilter(status) {
+      this.filterStatus = status;
+      this.selected = status;
     }
   },
-  template: "\n\t\t<div class=\"taskpage\">\n\t\t\t<div class=\"task-container\">\n\t\t\t<TaskInput/> \n\t\t\t<TaskList :tasks=\"sortAsc\" />\n\t\t\t</div>\n\t\t</div>\n\t"
+  computed: {
+    displayTasks: function displayTasks() {
+      return this.sortAsc(this.getTasksByStatus(this.filterStatus));
+    },
+    incompletedTaskNum: function incompletedTaskNum() {
+      return this.getTasksByStatus(0).length;
+    }
+  },
+  template: "\n\t\t<div class=\"taskpage\">\n\t\t    <div class=\"task-title\">todos</div>\n\t\t\t<div class=\"task-container\">\n                <TaskInput/>\n                <div class=\"taskpage-tabs\">\n                    <div v-bind:class=\"{selected: selected == -1}\" @click=\"setFilter(-1)\">All</div>\n                    <div v-bind:class=\"{selected: selected == 0}\" @click=\"setFilter(0)\">Active</div>\n                    <div v-bind:class=\"{selected: selected == 1}\" @click=\"setFilter(1)\">Completed</div>\n                    <div> {{incompletedTaskNum}} items left </div>\n                </div> \n                <TaskList :tasks=\"displayTasks\" />\n            </div>\n\t\t</div>\n\t"
 };
 /* harmony default export */ __webpack_exports__["default"] = (TaskPage);
 
@@ -53760,11 +53791,22 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 /* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   state: {
     tasks: [],
-    userId: USERID
+    userId: USERID,
+    userName: USERNAME,
+    pageType: 'ALL'
   },
   getters: {
     tasks: function tasks(state) {
       return state.tasks;
+    },
+    userId: function userId(state) {
+      return state.userId;
+    },
+    userName: function userName(state) {
+      return state.userName;
+    },
+    pageType: function pageType(state) {
+      return state.pageType;
     }
   },
   mutations: {
@@ -53793,6 +53835,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
       _common_task__WEBPACK_IMPORTED_MODULE_2__["default"].createTask(title, function () {
         _this.commit('refresh');
       });
+    },
+    updateType: function updateType(state, type) {
+      state.pageType = type;
     }
   }
 }));
