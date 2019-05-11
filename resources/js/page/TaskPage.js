@@ -44,10 +44,13 @@ const TaskPage = {
 			<div class="task-container">
                 <TaskInput/>
                 <div class="taskpage-tabs">
-                    <div v-bind:class="{selected: selected == -1}" @click="setFilter(-1)">All</div>
-                    <div v-bind:class="{selected: selected == 0}" @click="setFilter(0)">Active</div>
-                    <div v-bind:class="{selected: selected == 1}" @click="setFilter(1)">Completed</div>
-                    <div> {{incompletedTaskNum}} items left </div>
+                    <div class="filter-tab left"> {{incompletedTaskNum}} items left </div>
+                    <div class="filter-tab middle">
+                        <div class="all" v-bind:class="{selected: selected == -1}" @click="setFilter(-1)">All</div>
+                        <div class="active" v-bind:class="{selected: selected == 0}" @click="setFilter(0)">Active</div>
+                        <div class="completed" v-bind:class="{selected: selected == 1}" @click="setFilter(1)">Completed</div>
+                    </div>
+                    <!--<div class="filter-tab right"></div>-->
                 </div> 
                 <TaskList :tasks="displayTasks" />
             </div>

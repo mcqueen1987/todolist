@@ -22,18 +22,28 @@
     color: rgb(232, 216, 216);
   }
   .taskpage-tabs {
+    display: flex;
     margin: 4px 0 4px 11px;
-    border-spacing: 5px;
-    display: inline-block;
-    width: 100%;
-    div {
+    .filter-tab {
       font-size: 19px;
       font-weight: 300;
       color: dimgray;
       border-radius: 6px;
-      display: table-cell;
-      padding: 3px 5px 3px 5px;
       border: 1px solid white;
+    }
+    .left {
+      flex-grow: 1;
+      font-size: 17px;
+      text-align: center;
+      padding-right: 30px;
+      font-style: oblique;
+    }
+    .middle {
+      display: flex;
+      flex-grow: 3;
+      div{
+        margin: 0 10px 0 10px;
+      }
     }
     .selected {
       border: 1px solid rgba(175, 47, 47, 0.2);

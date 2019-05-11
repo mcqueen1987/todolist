@@ -52,8 +52,10 @@
                 </div>
                 <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
                     <img src="../../assets/images/_ionicons_svg_ios-contact.svg" style="width: 17px; margin: 0 5px 4px 0;">
-                    <p style="display: inline-block;">Author</p>
-                    <p class="text-center text-md-left">Dongbo Xu</p>
+                    <p style="display: inline-block;">Author(Linkedin)</p>
+                    <p class="text-center text-md-left">
+                        <a href="https://www.linkedin.com/in/dongboxu/">Dongbo Xu</a>
+                    </p>
                 </div>
             </div>
         </div>
