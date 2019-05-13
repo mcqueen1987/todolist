@@ -3,14 +3,6 @@
 @section('content')
 <body>
 <div id="app" >
-    {{--<nav class="navbar navbar-inverse">--}}
-        {{--<div class="navbar-container container">--}}
-            {{--<div class="navbar-header">--}}
-                {{--<a class="navbar-brand" href="/">HOME</a>--}}
-            {{--</div>--}}
-        {{--</div>--}}
-    {{--</nav>--}}
-
     <div class="container main">
         <router-view/>
     </div>
