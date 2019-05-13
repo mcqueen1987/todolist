@@ -53791,8 +53791,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 /* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   state: {
     tasks: [],
-    userId: USERID,
-    userName: USERNAME,
+    userId: 0,
+    userName: '',
     pageType: 'ALL'
   },
   getters: {
