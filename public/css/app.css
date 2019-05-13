@@ -10667,6 +10667,10 @@ body {
   font-family: "Helvetica Neue", Arial, "Noto Sans", sans-serif;
 }
 
+.main {
+  margin-top: 70px;
+}
+
 .navbar-laravel {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
