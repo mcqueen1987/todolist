@@ -6268,7 +6268,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".taskpage {\n  margin: auto;\n  width: 60%;\n  padding: 10px;\n}\n.taskpage .completed-button {\n  margin: 10px 0 0 0;\n  color: #7b7474;\n  border: none;\n  background-color: white;\n  box-shadow: 4px 4px 5px #ededed;\n}\n.taskpage .task-container {\n  max-width: 1200px;\n  margin: auto;\n  box-shadow: 2px 2px 8px #f3f3f3;\n  background: white;\n}\n.taskpage .task-title {\n  font-size: 92px;\n  font-weight: 100;\n  text-align: center;\n  color: #e8d8d8;\n}\n.taskpage .taskpage-tabs {\n  display: flex;\n  margin: 4px 0 4px 11px;\n}\n.taskpage .taskpage-tabs .filter-tab {\n  font-size: 19px;\n  font-weight: 300;\n  color: dimgray;\n  border-radius: 6px;\n  border: 1px solid white;\n}\n.taskpage .taskpage-tabs .left {\n  flex-grow: 1;\n  font-size: 17px;\n  text-align: center;\n  padding-right: 30px;\n  font-style: oblique;\n}\n.taskpage .taskpage-tabs .middle {\n  display: flex;\n  flex-grow: 3;\n}\n.taskpage .taskpage-tabs .middle div {\n  margin: 0 10px 0 10px;\n}\n.taskpage .taskpage-tabs .selected {\n  border: 1px solid rgba(175, 47, 47, 0.2);\n}", ""]);
+exports.push([module.i, "/* width of browser >= 1201 */\n@media screen and (min-width: 1201px) {\n  .taskpage {\n    width: 50%;\n  }\n}\n/* width of browser < 900px */\n@media screen and (max-width: 1200px) {\n  .taskpage {\n    width: 60%;\n  }\n}\n/* width of browser >= 900px */\n@media screen and (max-width: 900px) {\n  .taskpage {\n    width: 80%;\n  }\n}\n/* width of browser < 900px */\n@media screen and (max-width: 500px) {\n  .taskpage {\n    width: 100%;\n  }\n}\n.taskpage {\n  margin: auto;\n  padding: 10px;\n}\n.taskpage .completed-button {\n  margin: 10px 0 0 0;\n  color: #7b7474;\n  border: none;\n  background-color: white;\n  box-shadow: 4px 4px 5px #ededed;\n}\n.taskpage .task-container {\n  max-width: 1200px;\n  margin: auto;\n  box-shadow: 2px 2px 8px #f3f3f3;\n  background: white;\n}\n.taskpage .task-title {\n  font-size: 92px;\n  font-weight: 100;\n  text-align: center;\n  color: #e8d8d8;\n}\n.taskpage .taskpage-tabs {\n  display: flex;\n  margin: 4px 0 4px 11px;\n}\n.taskpage .taskpage-tabs .filter-tab {\n  font-size: 19px;\n  font-weight: 300;\n  color: dimgray;\n  border-radius: 6px;\n  border: 1px solid white;\n}\n.taskpage .taskpage-tabs .left {\n  flex-grow: 1;\n  font-size: 17px;\n  text-align: center;\n  padding-right: 30px;\n  font-style: oblique;\n}\n.taskpage .taskpage-tabs .middle {\n  display: flex;\n  flex-grow: 3;\n}\n.taskpage .taskpage-tabs .middle div {\n  margin: 0 10px 0 10px;\n}\n.taskpage .taskpage-tabs .selected {\n  border: 1px solid rgba(175, 47, 47, 0.2);\n}", ""]);
 
 // exports
 
@@ -53791,8 +53791,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 /* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   state: {
     tasks: [],
-    userId: 0,
-    userName: '',
+    userId: USERID,
+    userName: USERNAME,
     pageType: 'ALL'
   },
   getters: {

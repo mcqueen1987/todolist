@@ -1,6 +1,23 @@
+
+/* width of browser >= 1201 */
+@media screen and (min-width: 1201px) {
+  .taskpage {width: 50%;}
+}
+/* width of browser < 900px */
+@media screen and (max-width: 1200px) {
+  .taskpage {width: 60%;}
+}
+/* width of browser >= 900px */
+@media screen and (max-width: 900px) {
+  .taskpage {width: 80%;}
+}
+/* width of browser < 900px */
+@media screen and (max-width: 500px) {
+  .taskpage {width: 100%;}
+}
+
 .taskpage {
   margin: auto;
-  width: 60%;
   padding: 10px;
   .completed-button {
     margin: 10px 0 0 0;

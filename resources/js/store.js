@@ -7,8 +7,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
 	state: {
 		tasks : [],
-		userId : 0,
-        userName : '',
+		userId : USERID,
+        userName : USERNAME,
         pageType : 'ALL'
 	},
     getters:{

@@ -86,6 +86,7 @@
 
                 <div class="links">
                     <a href="{{ url('/home') }}">Todo List</a>
+                    <a href="https://docs.google.com/document/d/1Gar8UQBMXU7MIdJzTZnLrULmiV3t0DEKWbutmGrZPNU/edit">Resume</a>
                     <a href="https://www.linkedin.com/in/dongboxu/">Linkedin</a>
                     <a href="https://github.com/mcqueen1987">GitHub</a>
                 </div>
