@@ -16,7 +16,7 @@ const TaskInput = {
 	template: `
 		<div class='taskinput'>
 			<input v-on:keyup.enter="add" type="text" v-model="title" placeholder="pls input task title">
-			<button v-on:click="add" v-if="title !==''">+</button>
+    		<img  v-on:click="add" v-if="title !==''" src="../../assets/images/plus_icon.png">  
 		</div>
 	`
 };

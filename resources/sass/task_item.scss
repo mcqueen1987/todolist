@@ -11,10 +11,13 @@
     border-radius: 50%;
     margin-right: 20px;
     .check-box-mark {
-      bottom: 9px;
-      display: inline-block;
+      bottom: 14px;
       position: relative;
-      left: 6px;
+      left: -2px;
+      img{
+        width: 40px;
+        height: 40px;
+      }
     }
   }
   .item-title {
@@ -26,10 +29,11 @@
     }
   }
   .delete {
-    width: 40px;
-    font-size: 39px;
-    font-weight: 200;
-    color: red;
+    margin-right: 20px;
+    img {
+      width: 25px;
+      height: 25px;
+    }
   }
 }
 

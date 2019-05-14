@@ -26,13 +26,17 @@ const TaskItem = {
 	template:`
 	<div class='taskitem'  @mouseover="onhoverY" @mouseleave="onhoverN" >
         <div class="check-box" @click="updateTask">
-            <div class="check-box-mark" v-if="task.status == 1">✔️</div>
+            <div class="check-box-mark" v-if="task.status == 1">
+				<img src="../../assets/images/tick.svg"> 
+            ️</div>
         </div>
         <div class="item-title">
 			<div :style="{'text-decoration': task.status == 1 ? 'line-through': 'unset'}"> {{task.title}} </div>
 			<div class="comments" v-if="task.status == 1">{{task.finished_at}} by {{this.$store.getters.userName}}</div>
 		</div>
-		<div class='delete' v-show="onhover" @click="deleteTask"> × </div>
+		<div class='delete' v-show="onhover" @click="deleteTask"> 
+			<img src="../../assets/images/cross-out.png"> 
+		</div>
        	</div>`
 };
 export default TaskItem;

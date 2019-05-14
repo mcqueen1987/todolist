@@ -6211,7 +6211,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".taskinput {\n  box-shadow: inset 0px -2px 8px #f3f3f3;\n  display: flex;\n  background: white;\n  font-size: 32px;\n  padding: 16px 16px 16px 48px;\n}\n.taskinput input {\n  outline: none;\n  width: 100%;\n  border: none;\n  font-weight: 100;\n}\n.taskinput input::-webkit-input-placeholder {\n  color: #ccc;\n}\n.taskinput button {\n  background: none;\n  border: none;\n  font-weight: 100;\n}\n.taskinput .show-add-label {\n  display: none;\n}", ""]);
+exports.push([module.i, ".taskinput {\n  box-shadow: inset 0px -2px 8px #f3f3f3;\n  display: flex;\n  background: white;\n  font-size: 32px;\n  padding: 16px 16px 16px 48px;\n}\n.taskinput input {\n  outline: none;\n  width: 100%;\n  border: none;\n  font-weight: 100;\n}\n.taskinput input::-webkit-input-placeholder {\n  color: #ccc;\n}\n.taskinput img {\n  margin-top: 13px;\n  width: 30px;\n  height: 30px;\n}", ""]);
 
 // exports
 
@@ -6230,7 +6230,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".taskitem {\n  padding-left: 12px;\n  border-bottom: 1px solid #ededed;\n  display: flex;\n}\n.taskitem .check-box {\n  position: relative;\n  top: 10px;\n  width: 40px;\n  height: 40px;\n  border: 1px solid #dfdfdf;\n  border-radius: 50%;\n  margin-right: 20px;\n}\n.taskitem .check-box .check-box-mark {\n  bottom: 9px;\n  display: inline-block;\n  position: relative;\n  left: 6px;\n}\n.taskitem .item-title {\n  flex-grow: 2;\n}\n.taskitem .item-title .comments {\n  font-size: 12px;\n  line-height: 10px;\n  margin: -10px 0 10px 0;\n}\n.taskitem .delete {\n  width: 40px;\n  font-size: 39px;\n  font-weight: 200;\n  color: red;\n}", ""]);
+exports.push([module.i, ".taskitem {\n  padding-left: 12px;\n  border-bottom: 1px solid #ededed;\n  display: flex;\n}\n.taskitem .check-box {\n  position: relative;\n  top: 10px;\n  width: 40px;\n  height: 40px;\n  border: 1px solid #dfdfdf;\n  border-radius: 50%;\n  margin-right: 20px;\n}\n.taskitem .check-box .check-box-mark {\n  bottom: 14px;\n  position: relative;\n  left: -2px;\n}\n.taskitem .check-box .check-box-mark img {\n  width: 40px;\n  height: 40px;\n}\n.taskitem .item-title {\n  flex-grow: 2;\n}\n.taskitem .item-title .comments {\n  font-size: 12px;\n  line-height: 10px;\n  margin: -10px 0 10px 0;\n}\n.taskitem .delete {\n  margin-right: 20px;\n}\n.taskitem .delete img {\n  width: 25px;\n  height: 25px;\n}", ""]);
 
 // exports
 
@@ -53613,7 +53613,7 @@ var TaskInput = {
       this.title = "";
     }
   },
-  template: "\n\t\t<div class='taskinput'>\n\t\t\t<input v-on:keyup.enter=\"add\" type=\"text\" v-model=\"title\" placeholder=\"pls input task title\">\n\t\t\t<button v-on:click=\"add\" v-if=\"title !==''\">+</button>\n\t\t</div>\n\t"
+  template: "\n\t\t<div class='taskinput'>\n\t\t\t<input v-on:keyup.enter=\"add\" type=\"text\" v-model=\"title\" placeholder=\"pls input task title\">\n    \t\t<img  v-on:click=\"add\" v-if=\"title !==''\" src=\"../../assets/images/plus_icon.png\">  \n\t\t</div>\n\t"
 };
 /* harmony default export */ __webpack_exports__["default"] = (TaskInput);
 
@@ -53654,7 +53654,7 @@ var TaskItem = {
       this.onhover = false;
     }
   },
-  template: "\n\t<div class='taskitem'  @mouseover=\"onhoverY\" @mouseleave=\"onhoverN\" >\n        <div class=\"check-box\" @click=\"updateTask\">\n            <div class=\"check-box-mark\" v-if=\"task.status == 1\">\u2714\uFE0F</div>\n        </div>\n        <div class=\"item-title\">\n\t\t\t<div :style=\"{'text-decoration': task.status == 1 ? 'line-through': 'unset'}\"> {{task.title}} </div>\n\t\t\t<div class=\"comments\" v-if=\"task.status == 1\">{{task.finished_at}} by {{this.$store.getters.userName}}</div>\n\t\t</div>\n\t\t<div class='delete' v-show=\"onhover\" @click=\"deleteTask\"> \xD7 </div>\n       \t</div>"
+  template: "\n\t<div class='taskitem'  @mouseover=\"onhoverY\" @mouseleave=\"onhoverN\" >\n        <div class=\"check-box\" @click=\"updateTask\">\n            <div class=\"check-box-mark\" v-if=\"task.status == 1\">\n\t\t\t\t<img src=\"../../assets/images/tick.svg\"> \n            \uFE0F</div>\n        </div>\n        <div class=\"item-title\">\n\t\t\t<div :style=\"{'text-decoration': task.status == 1 ? 'line-through': 'unset'}\"> {{task.title}} </div>\n\t\t\t<div class=\"comments\" v-if=\"task.status == 1\">{{task.finished_at}} by {{this.$store.getters.userName}}</div>\n\t\t</div>\n\t\t<div class='delete' v-show=\"onhover\" @click=\"deleteTask\"> \n\t\t\t<img src=\"../../assets/images/cross-out.png\"> \n\t\t</div>\n       \t</div>"
 };
 /* harmony default export */ __webpack_exports__["default"] = (TaskItem);
 
