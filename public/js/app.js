@@ -6211,7 +6211,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".taskinput {\n  box-shadow: inset 0px -2px 8px #f3f3f3;\n  display: flex;\n  background: white;\n  font-size: 32px;\n  padding: 16px 16px 16px 48px;\n}\n.taskinput input {\n  outline: none;\n  width: 100%;\n  border: none;\n  font-weight: 100;\n}\n.taskinput input::-webkit-input-placeholder {\n  color: #ccc;\n}\n.taskinput img {\n  margin-top: 13px;\n  width: 30px;\n  height: 30px;\n}", ""]);
+exports.push([module.i, ".taskinput {\n  box-shadow: inset 0px -2px 8px #f3f3f3;\n  display: flex;\n  background: white;\n  font-size: 32px;\n  padding: 16px 16px 16px 48px;\n}\n.taskinput input {\n  outline: none;\n  width: 100%;\n  border: none;\n  font-weight: 100;\n}\n.taskinput input::-webkit-input-placeholder {\n  color: #ccc;\n}\n.taskinput img {\n  margin-top: 15px;\n  width: 24px;\n  height: 24px;\n}", ""]);
 
 // exports
 
@@ -6230,7 +6230,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".taskitem {\n  padding-left: 12px;\n  border-bottom: 1px solid #ededed;\n  display: flex;\n}\n.taskitem .check-box {\n  position: relative;\n  top: 10px;\n  width: 40px;\n  height: 40px;\n  border: 1px solid #dfdfdf;\n  border-radius: 50%;\n  margin-right: 20px;\n}\n.taskitem .check-box .check-box-mark {\n  bottom: 14px;\n  position: relative;\n  left: -2px;\n}\n.taskitem .check-box .check-box-mark img {\n  width: 40px;\n  height: 40px;\n}\n.taskitem .item-title {\n  flex-grow: 2;\n}\n.taskitem .item-title .comments {\n  font-size: 12px;\n  line-height: 10px;\n  margin: -10px 0 10px 0;\n}\n.taskitem .delete {\n  margin-right: 20px;\n}\n.taskitem .delete img {\n  width: 25px;\n  height: 25px;\n}", ""]);
+exports.push([module.i, ".taskitem {\n  padding-left: 12px;\n  border-bottom: 1px solid #ededed;\n  display: flex;\n}\n.taskitem .check-box {\n  position: relative;\n  top: 10px;\n  width: 40px;\n  height: 40px;\n  border: 1px solid #dfdfdf;\n  border-radius: 50%;\n  margin-right: 20px;\n}\n.taskitem .check-box .check-box-mark {\n  bottom: 13px;\n  position: relative;\n  left: 3px;\n}\n.taskitem .check-box .check-box-mark img {\n  width: 30px;\n  height: 30px;\n}\n.taskitem .item-title {\n  flex-grow: 2;\n}\n.taskitem .item-title .comments {\n  font-size: 12px;\n  line-height: 10px;\n  margin: -10px 0 10px 0;\n}\n.taskitem .delete {\n  margin-right: 20px;\n}\n.taskitem .delete img {\n  width: 19px;\n  height: 19px;\n}", ""]);
 
 // exports
 
