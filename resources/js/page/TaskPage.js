@@ -4,7 +4,9 @@ import '../../sass/task_page.scss';
 
 const TaskPage = {
     mounted: function () {
-        this.$store.commit('refresh');
+        this.$store.dispatch('refreshTasks').then(() => {
+            console.log(" tasks in task-page has updated !!! ");
+        })
     },
     data: function () {
         return {

@@ -4,7 +4,7 @@ const DetailPage = {
     created() {
         if(this.$store.getters.tasks){
             this.$store.dispatch('refreshTasks').then(() => {
-                console.log(" tasks in store has updated !!! ");
+                console.log(" tasks in detail-page has updated !!! ");
             })
         }
     },

@@ -53728,7 +53728,7 @@ var DetailPage = {
   created: function created() {
     if (this.$store.getters.tasks) {
       this.$store.dispatch('refreshTasks').then(function () {
-        console.log(" tasks in store has updated !!! ");
+        console.log(" tasks in detail-page has updated !!! ");
       });
     }
   },
@@ -53761,7 +53761,9 @@ __webpack_require__.r(__webpack_exports__);
 
 var TaskPage = {
   mounted: function mounted() {
-    this.$store.commit('refresh');
+    this.$store.dispatch('refreshTasks').then(function () {
+      console.log(" tasks in task-page has updated !!! ");
+    });
   },
   data: function data() {
     return {
