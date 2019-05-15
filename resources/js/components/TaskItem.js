@@ -31,7 +31,9 @@ const TaskItem = {
             ️</div>
         </div>
         <div class="item-title">
-			<div :style="{'text-decoration': task.status == 1 ? 'line-through': 'unset'}"> {{task.title}} </div>
+			<div :style="{'text-decoration': task.status == 1 ? 'line-through': 'unset'}"> 
+			    <router-link :to="{name:'detail', params:{id: task.id }}"> {{task.title}}  </router-link>
+			</div>
 			<div class="comments" v-if="task.status == 1">{{task.finished_at}} by {{this.$store.getters.userName}}</div>
 		</div>
 		<div class='delete' v-show="onhover" @click="deleteTask"> 

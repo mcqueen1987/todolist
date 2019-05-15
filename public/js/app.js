@@ -53654,7 +53654,7 @@ var TaskItem = {
       this.onhover = false;
     }
   },
-  template: "\n\t<div class='taskitem'  @mouseover=\"onhoverY\" @mouseleave=\"onhoverN\" >\n        <div class=\"check-box\" @click=\"updateTask\">\n            <div class=\"check-box-mark\" v-if=\"task.status == 1\">\n\t\t\t\t<img src=\"../../assets/images/tick.svg\"> \n            \uFE0F</div>\n        </div>\n        <div class=\"item-title\">\n\t\t\t<div :style=\"{'text-decoration': task.status == 1 ? 'line-through': 'unset'}\"> {{task.title}} </div>\n\t\t\t<div class=\"comments\" v-if=\"task.status == 1\">{{task.finished_at}} by {{this.$store.getters.userName}}</div>\n\t\t</div>\n\t\t<div class='delete' v-show=\"onhover\" @click=\"deleteTask\"> \n\t\t\t<img src=\"../../assets/images/cross-out.png\"> \n\t\t</div>\n       \t</div>"
+  template: "\n\t<div class='taskitem'  @mouseover=\"onhoverY\" @mouseleave=\"onhoverN\" >\n        <div class=\"check-box\" @click=\"updateTask\">\n            <div class=\"check-box-mark\" v-if=\"task.status == 1\">\n\t\t\t\t<img src=\"../../assets/images/tick.svg\"> \n            \uFE0F</div>\n        </div>\n        <div class=\"item-title\">\n\t\t\t<div :style=\"{'text-decoration': task.status == 1 ? 'line-through': 'unset'}\"> \n\t\t\t    <router-link :to=\"{name:'detail', params:{id: task.id }}\"> {{task.title}}  </router-link>\n\t\t\t</div>\n\t\t\t<div class=\"comments\" v-if=\"task.status == 1\">{{task.finished_at}} by {{this.$store.getters.userName}}</div>\n\t\t</div>\n\t\t<div class='delete' v-show=\"onhover\" @click=\"deleteTask\"> \n\t\t\t<img src=\"../../assets/images/cross-out.png\"> \n\t\t</div>\n       \t</div>"
 };
 /* harmony default export */ __webpack_exports__["default"] = (TaskItem);
 
@@ -53685,6 +53685,50 @@ var TaskList = {
   template: "\n\t<div class=\"tasklist\">\n\t\t<TaskItem v-for=\"item in tasks\" :key=\"item.id\" :task=\"item\"/>\n\t</div>"
 };
 /* harmony default export */ __webpack_exports__["default"] = (TaskList);
+
+/***/ }),
+
+/***/ "./resources/js/page/DetailPage.js":
+/*!*****************************************!*\
+  !*** ./resources/js/page/DetailPage.js ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var DetailPage = {
+  data: function data() {
+    return {
+      tasks: this.$store.getters.tasks
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    // this.$store.commit('refresh');
+    // this.$store.dispatch('refresh');
+    this.$store.dispatch('refreshTasks').then(function () {
+      // ...
+      console.log("  000  ============== " + _this.tasks);
+    });
+  },
+  // beforeMount: function () {
+  //
+  // },
+  methods: {
+    taskTitle: function taskTitle() {
+      var _this2 = this;
+
+      var tar = this.tasks.find(function (item) {
+        return item.id === _this2.$route.params.id;
+      });
+      return tar ? tar.title : "";
+    }
+  },
+  template: "\n\t\t<div class=\"detail-page\">\n\t\t    <div class=\"task-title\">todos</div>\n\t\t\t<div class=\"task-container\">\n\t\t\t    <div contenteditable=\"true\">\n                  This text can be edited by the user.{{this.tasks}}\n                </div>\n            </div>\n\t\t</div>\n\t"
+};
+/* harmony default export */ __webpack_exports__["default"] = (DetailPage);
 
 /***/ }),
 
@@ -53763,10 +53807,20 @@ var TaskPage = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _page_TaskPage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./page/TaskPage */ "./resources/js/page/TaskPage.js");
+/* harmony import */ var _page_DetailPage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./page/DetailPage */ "./resources/js/page/DetailPage.js");
+
 
 /* harmony default export */ __webpack_exports__["default"] = ([{
   path: '/',
+  name: 'home',
   component: _page_TaskPage__WEBPACK_IMPORTED_MODULE_0__["default"]
+}, {
+  path: '/detail/:id',
+  name: 'detail',
+  component: _page_DetailPage__WEBPACK_IMPORTED_MODULE_1__["default"]
+}, {
+  path: "*",
+  redirect: "/"
 }]);
 
 /***/ }),
@@ -53807,6 +53861,11 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     },
     pageType: function pageType(state) {
       return state.pageType;
+    },
+    getTaskById: function getTaskById(state, $id) {
+      return state.tasks.find(function (item) {
+        return item.id === $id;
+      });
     }
   },
   mutations: {
@@ -53814,6 +53873,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
       _common_task__WEBPACK_IMPORTED_MODULE_2__["default"].getTaskList(function (resp) {
         state.tasks = resp.data.data;
       });
+    },
+    setTasks: function setTasks(state, tasks) {
+      state.tasks = tasks;
     },
     update: function update(state, task) {
       _common_task__WEBPACK_IMPORTED_MODULE_2__["default"].updateTask(task, function () {
@@ -53838,6 +53900,17 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     },
     updateType: function updateType(state, type) {
       state.pageType = type;
+    }
+  },
+  actions: {
+    refreshTasks: function refreshTasks(_ref) {
+      var commit = _ref.commit;
+      axios.get('/api/user/' + USERID + '/task').then(function (response) {
+        console.log(response);
+        commit('setTasks', response.data.data);
+      })["catch"](function (error) {
+        console.log(error);
+      });
     }
   }
 }));
