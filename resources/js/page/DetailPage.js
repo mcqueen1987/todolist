@@ -1,25 +1,16 @@
+import utils from "../common/Utils";
 
 const DetailPage = {
-    data: function() {
-        return {
-            tasks: this.$store.getters.tasks
+    created() {
+        if(this.$store.getters.tasks){
+            this.$store.dispatch('refreshTasks').then(() => {
+                console.log(" tasks in store has updated !!! ");
+            })
         }
     },
-    created() {
-        // this.$store.commit('refresh');
-        // this.$store.dispatch('refresh');
-        this.$store.dispatch('refreshTasks').then(() => {
-            // ...
-            console.log("  000  ============== " + this.tasks);
-        })
-    },
-    // beforeMount: function () {
-    //
-    // },
-    methods: {
+    computed: {
         taskTitle: function () {
-            let tar = this.tasks.find(item => item.id === this.$route.params.id);
-            return tar ? tar.title : "";
+            return utils.getTaskById(this.$store.getters.tasks, this.$route.params.id);
         }
     },
     template: `
@@ -27,7 +18,7 @@ const DetailPage = {
 		    <div class="task-title">todos</div>
 			<div class="task-container">
 			    <div contenteditable="true">
-                  This text can be edited by the user.{{this.tasks}}
+                  This text can be edited by the user.{{taskTitle}}
                 </div>
             </div>
 		</div>

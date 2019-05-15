@@ -53532,9 +53532,9 @@ if (token) {
 
 /***/ }),
 
-/***/ "./resources/js/common/task.js":
+/***/ "./resources/js/common/Task.js":
 /*!*************************************!*\
-  !*** ./resources/js/common/task.js ***!
+  !*** ./resources/js/common/Task.js ***!
   \*************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -53582,9 +53582,34 @@ var taskReq = {
     })["catch"](function (error) {
       console.log(error);
     });
+  },
+  getTaskById: function getTaskById(tasks, taskId) {
+    tasks.find(function (item) {
+      return item.id === taskId;
+    });
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (taskReq);
+
+/***/ }),
+
+/***/ "./resources/js/common/Utils.js":
+/*!**************************************!*\
+  !*** ./resources/js/common/Utils.js ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var utils = {
+  getTaskById: function getTaskById(tasks, taskId) {
+    return tasks.find(function (item) {
+      return item.id == taskId;
+    });
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = (utils);
 
 /***/ }),
 
@@ -53697,36 +53722,22 @@ var TaskList = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _common_Utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../common/Utils */ "./resources/js/common/Utils.js");
+
 var DetailPage = {
-  data: function data() {
-    return {
-      tasks: this.$store.getters.tasks
-    };
-  },
   created: function created() {
-    var _this = this;
-
-    // this.$store.commit('refresh');
-    // this.$store.dispatch('refresh');
-    this.$store.dispatch('refreshTasks').then(function () {
-      // ...
-      console.log("  000  ============== " + _this.tasks);
-    });
-  },
-  // beforeMount: function () {
-  //
-  // },
-  methods: {
-    taskTitle: function taskTitle() {
-      var _this2 = this;
-
-      var tar = this.tasks.find(function (item) {
-        return item.id === _this2.$route.params.id;
+    if (this.$store.getters.tasks) {
+      this.$store.dispatch('refreshTasks').then(function () {
+        console.log(" tasks in store has updated !!! ");
       });
-      return tar ? tar.title : "";
     }
   },
-  template: "\n\t\t<div class=\"detail-page\">\n\t\t    <div class=\"task-title\">todos</div>\n\t\t\t<div class=\"task-container\">\n\t\t\t    <div contenteditable=\"true\">\n                  This text can be edited by the user.{{this.tasks}}\n                </div>\n            </div>\n\t\t</div>\n\t"
+  computed: {
+    taskTitle: function taskTitle() {
+      return _common_Utils__WEBPACK_IMPORTED_MODULE_0__["default"].getTaskById(this.$store.getters.tasks, this.$route.params.id);
+    }
+  },
+  template: "\n\t\t<div class=\"detail-page\">\n\t\t    <div class=\"task-title\">todos</div>\n\t\t\t<div class=\"task-container\">\n\t\t\t    <div contenteditable=\"true\">\n                  This text can be edited by the user.{{taskTitle}}\n                </div>\n            </div>\n\t\t</div>\n\t"
 };
 /* harmony default export */ __webpack_exports__["default"] = (DetailPage);
 
@@ -53837,7 +53848,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _common_task__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./common/task */ "./resources/js/common/task.js");
+/* harmony import */ var _common_Task__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./common/Task */ "./resources/js/common/Task.js");
 
 
 
@@ -53861,16 +53872,11 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     },
     pageType: function pageType(state) {
       return state.pageType;
-    },
-    getTaskById: function getTaskById(state, $id) {
-      return state.tasks.find(function (item) {
-        return item.id === $id;
-      });
     }
   },
   mutations: {
     refresh: function refresh(state) {
-      _common_task__WEBPACK_IMPORTED_MODULE_2__["default"].getTaskList(function (resp) {
+      _common_Task__WEBPACK_IMPORTED_MODULE_2__["default"].getTaskList(function (resp) {
         state.tasks = resp.data.data;
       });
     },
@@ -53878,14 +53884,14 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
       state.tasks = tasks;
     },
     update: function update(state, task) {
-      _common_task__WEBPACK_IMPORTED_MODULE_2__["default"].updateTask(task, function () {
+      _common_Task__WEBPACK_IMPORTED_MODULE_2__["default"].updateTask(task, function () {
         state.tasks = state.tasks.map(function (item) {
           return item.id == task.id ? task : item;
         });
       });
     },
     "delete": function _delete(state, task) {
-      _common_task__WEBPACK_IMPORTED_MODULE_2__["default"].deleteTask(task.id, function () {
+      _common_Task__WEBPACK_IMPORTED_MODULE_2__["default"].deleteTask(task.id, function () {
         state.tasks = state.tasks.filter(function (item) {
           return item.id !== task.id;
         });
@@ -53894,7 +53900,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     add: function add(state, title) {
       var _this = this;
 
-      _common_task__WEBPACK_IMPORTED_MODULE_2__["default"].createTask(title, function () {
+      _common_Task__WEBPACK_IMPORTED_MODULE_2__["default"].createTask(title, function () {
         _this.commit('refresh');
       });
     },
@@ -53903,14 +53909,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     }
   },
   actions: {
-    refreshTasks: function refreshTasks(_ref) {
-      var commit = _ref.commit;
-      axios.get('/api/user/' + USERID + '/task').then(function (response) {
-        console.log(response);
-        commit('setTasks', response.data.data);
-      })["catch"](function (error) {
-        console.log(error);
-      });
+    refreshTasks: function refreshTasks(context) {
+      context.commit('refresh');
     }
   }
 }));

@@ -47,6 +47,9 @@ const taskReq = {
 			.catch(function (error) {
 				console.log(error);	
 			});
+	},
+	getTaskById(tasks, taskId){
+		tasks.find(item => item.id === taskId);
 	}
 };
 export default taskReq;

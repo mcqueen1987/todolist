@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import taskReq from "./common/task";
+import taskReq from "./common/Task";
 
 Vue.use(Vuex)
 
@@ -23,10 +23,7 @@ export default new Vuex.Store({
         },
         pageType: state => {
             return state.pageType;
-        },
-        getTaskById: (state, $id) => {
-            return state.tasks.find(item => item.id === $id);
-        },
+        }
     },
     mutations: {
         refresh: function (state) {
@@ -61,15 +58,8 @@ export default new Vuex.Store({
         }
     },
     actions: {
-        refreshTasks({commit}){
-            axios.get('/api/user/' + USERID +'/task')
-                .then(function (response) {
-                    console.log(response);
-                    commit('setTasks', response.data.data);
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
+        refreshTasks(context){
+            context.commit('refresh');
         }
     }
 })
