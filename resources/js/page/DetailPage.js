@@ -1,26 +1,27 @@
+
 import utils from "../common/Utils";
+import '../../sass/detail_page.scss';
+import '../../sass/task_page.scss';
+import TaskDetail from '../components/TaskDetail';
 
 const DetailPage = {
+    components: {TaskDetail},
     created() {
-        if(this.$store.getters.tasks){
-            this.$store.dispatch('refreshTasks').then(() => {
-                console.log(" tasks in detail-page has updated !!! ");
-            })
+        if (this.$store.getters.tasks) {
+            this.$store.dispatch('refreshTasks');
         }
     },
     computed: {
-        taskTitle: function () {
-            return utils.getTaskById(this.$store.getters.tasks, this.$route.params.id);
+        task(){
+            return utils.getTaskById(this.$store.getters.tasks, this.$route.params.id) || {title:"", content:""};
         }
     },
     template: `
-		<div class="detail-page">
-		    <div class="task-title">todos</div>
-			<div class="task-container">
-			    <div contenteditable="true">
-                  This text can be edited by the user.{{taskTitle}}
-                </div>
-            </div>
+		<div class="taskpage">
+            <div class="task-container">
+                <div class="task-title">todos</div>
+                <TaskDetail :task="task"/>
+            </div> 
 		</div>
 	`
 };

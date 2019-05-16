@@ -60,6 +60,9 @@ export default new Vuex.Store({
     actions: {
         refreshTasks(context){
             context.commit('refresh');
+        },
+        saveTask(context, task){
+            context.commit('update', task);
         }
     }
 })

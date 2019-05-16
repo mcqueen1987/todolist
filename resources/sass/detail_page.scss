@@ -1,69 +1,30 @@
 
-/* width of browser >= 1201 */
-@media screen and (min-width: 1201px) {
-  .taskpage {width: 50%;}
-}
-/* width of browser < 900px */
-@media screen and (max-width: 1200px) {
-  .taskpage {width: 60%;}
-}
-/* width of browser >= 900px */
-@media screen and (max-width: 900px) {
-  .taskpage {width: 80%;}
-}
-/* width of browser < 900px */
-@media screen and (max-width: 500px) {
-  .taskpage {width: 100%;}
-}
-
-.taskpage {
-  margin: auto;
-  padding: 10px;
-  .completed-button {
-    margin: 10px 0 0 0;
-    color: #7b7474;
-    border: none;
-    background-color: white;
-    box-shadow: 4px 4px 5px rgb(237, 237, 237);
-  }
-  .task-container {
-    max-width: 1200px;
-    margin: auto;
-    box-shadow: 2px 2px 8px #f3f3f3;
-    background: white;
-  }
-  .task-title {
-    font-size: 92px;
-    font-weight: 100;
-    text-align: center;
-    color: rgb(232, 216, 216);
-  }
-  .taskpage-tabs {
+.detailpage {
+  font-weight: 100;
+  padding: 16px 48px 16px 48px;
+  color: #666;
+  font-size: 26px;
+  line-height: 60px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2);
+  .item {
     display: flex;
-    margin: 4px 0 4px 11px;
-    .filter-tab {
-      font-size: 19px;
-      font-weight: 300;
-      color: dimgray;
-      border-radius: 6px;
-      border: 1px solid white;
+    justify-content: flex-end;
+    margin-top: 20px;
+    border-bottom: 1px solid #ededed;
+    & > div {
+      margin-right: 30px;
     }
-    .left {
-      flex-grow: 1;
-      font-size: 17px;
-      text-align: center;
-      padding-right: 30px;
-      font-style: oblique;
-    }
-    .middle {
-      display: flex;
-      flex-grow: 3;
-      div{
-        margin: 0 10px 0 10px;
-      }
-    }
-    .selected {
-      border: 1px solid rgba(175, 47, 47, 0.2);
+  }
+  .left-item {
+    width: 100px;
+  }
+  .right-item {
+    margin-left: 30px;
+  }
+  .content {
+    padding: 0 0 10px 0;
+    & > div {
+      margin-top: -29px;
     }
   }
 }
