@@ -1,4 +1,3 @@
-import { BAlert } from 'bootstrap-vue/es/components'
 
 const TaskDetail = {
     props: ['task'],
@@ -7,23 +6,16 @@ const TaskDetail = {
             load: false,
             title: 'loading',
             content: 'loading',
-            dismissSecs: 5,
-            dismissCountDown: 0,
             oriTask: {},
             newTask: {}
         }
     },
-    component: {'b-alert': BAlert},
     methods: {
         saveInfo() {
             this.$store.dispatch('saveTask', this.newTask);
-            this.dismissCountDown = this.dismissSecs;
         },
         reset() {
             this.newTask = {...this.oriTask};
-        },
-        countDownChanged(dismissCountDown) {
-            this.dismissCountDown = dismissCountDown
         }
     },
     computed: {
@@ -52,14 +44,6 @@ const TaskDetail = {
     template: `
 
         <div class="detailpage">
-            <div>
-                <b-alert :show="dismissCountDown" dismissible variant="warning"
-                  @dismissed="dismissCountDown=0"
-                  @dismiss-count-down="countDownChanged">
-                  save data succeed! This alert will dismiss after {{ dismissCountDown }} seconds...
-                </b-alert>
-            </div>
-              
           
             <div class="title item">
                 <div class="left-item">Title</div>

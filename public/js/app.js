@@ -81285,12 +81285,19 @@ var taskReq = {
       console.log(error);
     });
   },
-  updateTask: function updateTask(task, onsuccess) {
+  updateTask: function updateTask(task, onsuccess, onfail) {
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.patch('/api/user/' + USERID + '/task/' + task.id, task).then(function (response) {
       console.log(response);
-      onsuccess();
+
+      if (onsuccess && typeof onsuccess === 'function') {
+        onsuccess();
+      }
     })["catch"](function (error) {
       console.log(error);
+
+      if (onfail && typeof onfail === 'function') {
+        onfail();
+      }
     });
   },
   deleteTask: function deleteTask(taskId, onsuccess) {
@@ -81340,12 +81347,9 @@ var utils = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var bootstrap_vue_es_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! bootstrap-vue/es/components */ "./node_modules/bootstrap-vue/es/components/index.js");
-/* harmony import */ var bootstrap_vue_es_components__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(bootstrap_vue_es_components__WEBPACK_IMPORTED_MODULE_0__);
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 var TaskDetail = {
   props: ['task'],
@@ -81354,25 +81358,16 @@ var TaskDetail = {
       load: false,
       title: 'loading',
       content: 'loading',
-      dismissSecs: 5,
-      dismissCountDown: 0,
       oriTask: {},
       newTask: {}
     };
   },
-  component: {
-    'b-alert': bootstrap_vue_es_components__WEBPACK_IMPORTED_MODULE_0__["BAlert"]
-  },
   methods: {
     saveInfo: function saveInfo() {
       this.$store.dispatch('saveTask', this.newTask);
-      this.dismissCountDown = this.dismissSecs;
     },
     reset: function reset() {
       this.newTask = _objectSpread({}, this.oriTask);
-    },
-    countDownChanged: function countDownChanged(dismissCountDown) {
-      this.dismissCountDown = dismissCountDown;
     }
   },
   computed: {
@@ -81399,7 +81394,7 @@ var TaskDetail = {
       }
     }
   },
-  template: "\n\n        <div class=\"detailpage\">\n            <div>\n                <b-alert :show=\"dismissCountDown\" dismissible variant=\"warning\"\n                  @dismissed=\"dismissCountDown=0\"\n                  @dismiss-count-down=\"countDownChanged\">\n                  save data succeed! This alert will dismiss after {{ dismissCountDown }} seconds...\n                </b-alert>\n            </div>\n              \n          \n            <div class=\"title item\">\n                <div class=\"left-item\">Title</div>\n                <input v-model=\"taskTitle\" class=\"right-item\" contenteditable=\"true\">\n            </div>\n            <div class=\"content item\">\n                <div class=\"left-item\">Contents</div>\n                <textarea v-model=\"taskContent\" class=\"right-item\"></textarea>\n            </div>\n            <div class=\"button item\">                \n                <div class=\"cancel\" @click=\"reset()\"   > reset </div>\n                <div class=\"submit\" @click=\"saveInfo()\" > submit </div>\n            </div>\n        </div>\n\t"
+  template: "\n\n        <div class=\"detailpage\">\n          \n            <div class=\"title item\">\n                <div class=\"left-item\">Title</div>\n                <input v-model=\"taskTitle\" class=\"right-item\" contenteditable=\"true\">\n            </div>\n            <div class=\"content item\">\n                <div class=\"left-item\">Contents</div>\n                <textarea v-model=\"taskContent\" class=\"right-item\"></textarea>\n            </div>\n            <div class=\"button item\">                \n                <div class=\"cancel\" @click=\"reset()\"   > reset </div>\n                <div class=\"submit\" @click=\"saveInfo()\" > submit </div>\n            </div>\n        </div>\n\t"
 };
 /* harmony default export */ __webpack_exports__["default"] = (TaskDetail);
 
@@ -81520,17 +81515,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _sass_task_page_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../sass/task_page.scss */ "./resources/sass/task_page.scss");
 /* harmony import */ var _sass_task_page_scss__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_sass_task_page_scss__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _components_TaskDetail__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/TaskDetail */ "./resources/js/components/TaskDetail.js");
+/* harmony import */ var bootstrap_vue_es_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! bootstrap-vue/es/components */ "./node_modules/bootstrap-vue/es/components/index.js");
+/* harmony import */ var bootstrap_vue_es_components__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(bootstrap_vue_es_components__WEBPACK_IMPORTED_MODULE_4__);
+
 
 
 
 
 var DetailPage = {
+  data: function data() {
+    return {
+      dismissCountDown: 0
+    };
+  },
   components: {
     TaskDetail: _components_TaskDetail__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   created: function created() {
     if (this.$store.getters.tasks) {
       this.$store.dispatch('refreshTasks');
+    }
+  },
+  methods: {
+    countDownChanged: function countDownChanged(dismissCountDown) {
+      this.dismissCountDown = dismissCountDown; // !dismissCountDown && this.$store.dispatch('dismissMessage');
+    },
+    dismissed: function dismissed() {
+      this.$store.dispatch('dismissMessage');
     }
   },
   computed: {
@@ -81541,7 +81552,7 @@ var DetailPage = {
       };
     }
   },
-  template: "\n\t\t<div class=\"taskpage\">                \n\t\t    <div class=\"task-title\">todos</div>\n            <div class=\"task-container\">\n                <TaskDetail :task=\"task\"/>\n            </div> \n\t\t</div>\n\t"
+  template: "\n\t\t<div class=\"taskpage\">  \n\t\t    <div class=\"task-title\">todos</div>\n            <div class=\"task-container\">    \t\t\n                <b-alert :show=\"this.$store.getters.dismissCountDown\" dismissible \n                  :variant=\"this.$store.getters.messageType\"\n                  @dismissed=\"dismissed\"\n                  @dismiss-count-down=\"countDownChanged\">\n                  save data {{ this.$store.getters.messageType === 'success' ? 'succeed!' : 'failed!'}}  {{ dismissCountDown }}\n                </b-alert>\n                <TaskDetail :task=\"task\"/>\n            </div> \n\t\t</div>\n\t"
 };
 /* harmony default export */ __webpack_exports__["default"] = (DetailPage);
 
@@ -81661,6 +81672,9 @@ __webpack_require__.r(__webpack_exports__);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
 /* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   state: {
+    messageType: '',
+    dismissCountDown: 0,
+    //dismiss countdown of alert window
     tasks: [],
     userId: USERID,
     userName: USERNAME,
@@ -81678,6 +81692,12 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     },
     pageType: function pageType(state) {
       return state.pageType;
+    },
+    dismissCountDown: function dismissCountDown(state) {
+      return state.dismissCountDown;
+    },
+    messageType: function messageType(state) {
+      return state.messageType;
     }
   },
   mutations: {
@@ -81690,11 +81710,26 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
       state.tasks = tasks;
     },
     update: function update(state, task) {
+      var _this = this;
+
       _common_Task__WEBPACK_IMPORTED_MODULE_2__["default"].updateTask(task, function () {
+        _this.commit('showMessage', 'success');
+
         state.tasks = state.tasks.map(function (item) {
           return item.id == task.id ? task : item;
         });
+      }, function () {
+        _this.commit('showMessage', 'warning');
       });
+    },
+    showMessage: function showMessage(state, msgType) {
+      var countDown = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 3;
+      state.dismissCountDown = countDown;
+      state.messageType = msgType;
+    },
+    dismissMessage: function dismissMessage(state) {
+      state.dismissCountDown = 0;
+      state.messageType = '';
     },
     "delete": function _delete(state, task) {
       _common_Task__WEBPACK_IMPORTED_MODULE_2__["default"].deleteTask(task.id, function () {
@@ -81704,10 +81739,10 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
       });
     },
     add: function add(state, title) {
-      var _this = this;
+      var _this2 = this;
 
       _common_Task__WEBPACK_IMPORTED_MODULE_2__["default"].createTask(title, function () {
-        _this.commit('refresh');
+        _this2.commit('refresh');
       });
     },
     updateType: function updateType(state, type) {
@@ -81720,6 +81755,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     },
     saveTask: function saveTask(context, task) {
       context.commit('update', task);
+    },
+    dismissMessage: function dismissMessage(context) {
+      context.commit('dismissMessage');
     }
   }
 }));

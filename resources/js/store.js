@@ -6,24 +6,20 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
 	state: {
+	    messageType: '',
+        dismissCountDown: 0, //dismiss countdown of alert window
 		tasks : [],
 		userId : USERID,
         userName : USERNAME,
         pageType : 'ALL'
 	},
     getters:{
-	    tasks: state => {
-	        return state.tasks;
-        },
-        userId: state => {
-            return state.userId;
-        },
-        userName: state => {
-            return state.userName;
-        },
-        pageType: state => {
-            return state.pageType;
-        }
+	    tasks: state =>  state.tasks,
+        userId: state => state.userId,
+        userName: state => state.userName,
+        pageType: state => state.pageType,
+        dismissCountDown: state => state.dismissCountDown,
+        messageType: state => state.messageType
     },
     mutations: {
         refresh: function (state) {
@@ -32,14 +28,25 @@ export default new Vuex.Store({
             });
         },
         setTasks: function (state, tasks) {
-          state.tasks = tasks;
+            state.tasks = tasks;
         },
         update: function (state, task) {
             taskReq.updateTask(task, () => {
+                this.commit('showMessage', 'success');
                 state.tasks = state.tasks.map((item) => {
                     return item.id == task.id ? task : item;
-                })
+                });
+            }, () => {
+                this.commit('showMessage', 'warning');
             });
+        },
+        showMessage: function(state, msgType, countDown=3) {
+            state.dismissCountDown = countDown;
+            state.messageType = msgType;
+        },
+        dismissMessage: function(state) {
+            state.dismissCountDown = 0;
+            state.messageType = '';
         },
         delete: function (state, task) {
             taskReq.deleteTask(task.id, () => {
@@ -63,6 +70,9 @@ export default new Vuex.Store({
         },
         saveTask(context, task){
             context.commit('update', task);
+        },
+        dismissMessage(context) {
+            context.commit('dismissMessage');
         }
     }
 })

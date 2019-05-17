@@ -28,14 +28,19 @@ const taskReq = {
 				console.log(error);
 			});
 	},
-	updateTask(task, onsuccess){
+	updateTask(task, onsuccess, onfail){
 		axios.patch('/api/user/' + USERID +'/task/' + task.id, task)
 			.then(function (response) {
 				console.log(response);
-				onsuccess();
+                if(onsuccess &&  typeof onsuccess === 'function' ){
+                    onsuccess();
+                }
 			})
 			.catch(function (error) {
 				console.log(error);
+				if(onfail &&  typeof onfail === 'function' ){
+				    onfail();
+                }
 			});
 	},
 	deleteTask(taskId, onsuccess){
