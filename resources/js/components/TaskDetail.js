@@ -1,5 +1,3 @@
-// import 'bootstrap/dist/css/bootstrap.css'
-// import 'bootstrap-vue/dist/bootstrap-vue.css'
 import { BAlert } from 'bootstrap-vue/es/components'
 
 const TaskDetail = {

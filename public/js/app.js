@@ -33264,7 +33264,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".detailpage {\n  font-weight: 100;\n  padding: 16px 48px 16px 48px;\n  color: #666;\n  font-size: 26px;\n  line-height: 60px;\n  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2);\n}\n.detailpage .item {\n  display: flex;\n  justify-content: flex-end;\n  margin-top: 20px;\n  border-bottom: 1px solid #ededed;\n}\n.detailpage .item > div {\n  margin-right: 30px;\n}\n.detailpage .left-item {\n  width: 100px;\n}\n.detailpage .right-item {\n  margin-left: 30px;\n}\n.detailpage .content {\n  padding: 0 0 10px 0;\n}\n.detailpage .content > div {\n  margin-top: -29px;\n}", ""]);
+exports.push([module.i, ".detailpage {\n  font-weight: 100;\n  padding: 16px 48px 16px 48px;\n  color: #666;\n  font-size: 26px;\n  line-height: 60px;\n  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2);\n}\n.detailpage .button {\n  justify-content: flex-end;\n}\n.detailpage .item {\n  display: flex;\n  margin-top: 20px;\n  border-bottom: 1px solid #ededed;\n}\n.detailpage .item > div {\n  margin-right: 30px;\n  min-width: 70px;\n}\n.detailpage .left-item {\n  width: 100px;\n}\n.detailpage .right-item {\n  outline: none;\n  width: 100%;\n  margin-left: 30px;\n  margin-bottom: 12px;\n  padding-left: 13px;\n  color: #666;\n  border: 2px solid #e5d8d8;\n  font-weight: 200;\n}\n.detailpage .content {\n  padding: 0 0 10px 0;\n}\n.detailpage .content > div {\n  margin-top: -29px;\n}", ""]);
 
 // exports
 
@@ -81346,8 +81346,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-// import 'bootstrap/dist/css/bootstrap.css'
-// import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 var TaskDetail = {
   props: ['task'],
