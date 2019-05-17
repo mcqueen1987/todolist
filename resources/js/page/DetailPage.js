@@ -17,9 +17,9 @@ const DetailPage = {
         }
     },
     template: `
-		<div class="taskpage">
+		<div class="taskpage">                
+		    <div class="task-title">todos</div>
             <div class="task-container">
-                <div class="task-title">todos</div>
                 <TaskDetail :task="task"/>
             </div> 
 		</div>

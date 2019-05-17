@@ -81541,7 +81541,7 @@ var DetailPage = {
       };
     }
   },
-  template: "\n\t\t<div class=\"taskpage\">\n            <div class=\"task-container\">\n                <div class=\"task-title\">todos</div>\n                <TaskDetail :task=\"task\"/>\n            </div> \n\t\t</div>\n\t"
+  template: "\n\t\t<div class=\"taskpage\">                \n\t\t    <div class=\"task-title\">todos</div>\n            <div class=\"task-container\">\n                <TaskDetail :task=\"task\"/>\n            </div> \n\t\t</div>\n\t"
 };
 /* harmony default export */ __webpack_exports__["default"] = (DetailPage);
 
