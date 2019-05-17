@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class HomeController extends Controller
 {
     /**
@@ -13,7 +11,6 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
     }
 
     /**
@@ -23,6 +20,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $this->middleware('auth');
+        if (auth()->guest()){
+            // login not required for a guest, may change in future
+            return view('home');
+        }else{
+            return view('home');
+        }
     }
 }
