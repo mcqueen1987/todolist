@@ -5,16 +5,16 @@ import taskReq from "./common/Task";
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-	state: {
-	    messageType: '',
+    state: {
+        messageType: '',
         dismissCountDown: 0, //dismiss countdown of alert window
-		tasks : [],
-		userId : USERID,
-        userName : USERNAME,
+        tasks: [],
+        userId: USERID,
+        userName: USERNAME,
         pageType : 'ALL'
-	},
-    getters:{
-	    tasks: state =>  state.tasks,
+    },
+    getters: {
+        tasks: state => state.tasks,
         userId: state => state.userId,
         userName: state => state.userName,
         pageType: state => state.pageType,
@@ -32,19 +32,19 @@ export default new Vuex.Store({
         },
         update: function (state, task) {
             taskReq.updateTask(task, () => {
-                this.commit('showMessage', 'success');
+                    this.commit('showMessage', 'success');
                 state.tasks = state.tasks.map((item) => {
                     return item.id == task.id ? task : item;
                 });
             }, () => {
-                this.commit('showMessage', 'warning');
+                    this.commit('showMessage', 'warning');
             });
         },
-        showMessage: function(state, msgType, countDown=3) {
+        showMessage: function (state, msgType, countDown = 3) {
             state.dismissCountDown = countDown;
             state.messageType = msgType;
         },
-        dismissMessage: function(state) {
+        dismissMessage: function (state) {
             state.dismissCountDown = 0;
             state.messageType = '';
         },
@@ -65,10 +65,10 @@ export default new Vuex.Store({
         }
     },
     actions: {
-        refreshTasks(context){
+        refreshTasks(context) {
             context.commit('refresh');
         },
-        saveTask(context, task){
+        saveTask(context, task) {
             context.commit('update', task);
         },
         dismissMessage(context) {
