@@ -11,7 +11,8 @@ export default new Vuex.Store({
         tasks: [],
         userId: USERID,
         userName: USERNAME,
-        pageType : 'ALL'
+        pageType: 'ALL',
+        display: false
     },
     getters: {
         tasks: state => state.tasks,
@@ -32,21 +33,24 @@ export default new Vuex.Store({
         },
         update: function (state, task) {
             taskReq.updateTask(task, () => {
-                    this.commit('showMessage', 'success');
+                this.commit('showMessage', 'success');
                 state.tasks = state.tasks.map((item) => {
                     return item.id == task.id ? task : item;
                 });
             }, () => {
-                    this.commit('showMessage', 'warning');
+                this.commit('showMessage', 'warning');
             });
         },
-        showMessage: function (state, msgType, countDown = 3) {
-            state.dismissCountDown = countDown;
-            state.messageType = msgType;
+        showMessage: function (state, msgType, countDown = 1) {
+            if (state.display) {
+                state.dismissCountDown = countDown;
+                state.messageType = msgType;
+            }
         },
         dismissMessage: function (state) {
             state.dismissCountDown = 0;
             state.messageType = '';
+            state.display = false;
         },
         delete: function (state, task) {
             taskReq.deleteTask(task.id, () => {
@@ -62,6 +66,9 @@ export default new Vuex.Store({
         },
         updateType: function (state, type) {
             state.pageType = type;
+        },
+        changeDisplay: function (state, display) {
+            state.display = display;
         }
     },
     actions: {
@@ -69,6 +76,7 @@ export default new Vuex.Store({
             context.commit('refresh');
         },
         saveTask(context, task) {
+            this.commit("changeDisplay", true);
             context.commit('update', task);
         },
         dismissMessage(context) {

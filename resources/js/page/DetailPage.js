@@ -39,7 +39,7 @@ const DetailPage = {
                   :variant="this.$store.getters.messageType"
                   @dismissed="dismissed"
                   @dismiss-count-down="countDownChanged">
-                  save data {{ this.$store.getters.messageType === 'success' ? 'succeed!' : 'failed!'}}  {{ dismissCountDown }}
+                  save data {{ this.$store.getters.messageType === 'success' ? 'succeed!' : 'failed!'}}
                 </b-alert>
                 <TaskDetail :task="task"/>
             </div> 
