@@ -6,7 +6,7 @@ It's a simple todo list web application that allows users to register, login, an
 
 ## Demo
 
-You can access the final project at: [built your todo list](http://104.155.134.145/) 👈
+You can access the final project at: [built your todo list](http://dongboxu.com/home) 👈
 
 ## Getting Started
 
